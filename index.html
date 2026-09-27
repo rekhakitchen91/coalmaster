@@ -4,197 +4,1310 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="CalcMaster offers free online basic, percentage, GST, age and EMI calculators.">
-<title>CalcMaster - Free Online Calculators</title>
+<meta name="theme-color" content="#080d1b">
+<meta name="description" content="CalcMaster — free online calculators for everyday maths, percentages, GST, age and EMI. Fast, simple and mobile friendly.">
+<title>CalcMaster — Every Calculator, One Place</title>
+
 <style>
-:root{--blue:#2563eb;--dark:#10213b;--bg:#f4f7fc;--muted:#64748b}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--dark)}
-header{background:#102a43;color:white;padding:25px 18px 35px}
-nav,.hero,.wrap{max-width:1050px;margin:auto}
-nav{display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:24px;font-weight:800;color:white;text-decoration:none}
-.logo span{color:#60a5fa}
-nav a{color:#dbeafe;text-decoration:none}
-.hero{padding:35px 0 10px}
-.hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 12px}
-.hero p{color:#dbeafe;line-height:1.6;margin:0}
-.search{display:block;width:100%;max-width:550px;padding:15px 17px;border:0;border-radius:12px;margin-top:24px;font-size:16px}
-.wrap{padding:25px 18px 45px}
-.section-title{font-size:23px;margin:8px 0 18px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
-.card{background:white;border:1px solid #e2e8f0;border-radius:15px;padding:20px;text-align:left;cursor:pointer;transition:.15s;color:var(--dark)}
-.card:hover,.card.active{border-color:var(--blue);box-shadow:0 5px 20px #2563eb15;transform:translateY(-2px)}
-.card .emoji{font-size:27px}
-.card h3{margin:12px 0 6px;font-size:17px}
-.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
-.panel{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:24px;margin-top:25px}
-.panel h2{margin:0 0 7px}
-.sub{color:var(--muted);font-size:14px;margin:0 0 22px;line-height:1.5}
-.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
-label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
-input,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px;background:white;color:var(--dark)}
-button.primary{margin-top:18px;background:var(--blue);color:white;border:0;border-radius:9px;padding:13px 20px;font-size:15px;font-weight:700;cursor:pointer}
-button.primary:hover{background:#1d4ed8}
-.result{display:none;margin-top:20px;background:#eff6ff;border:1px solid #bfdbfe;padding:18px;border-radius:11px;line-height:1.7;overflow-wrap:anywhere}
-.result strong{font-size:24px;color:#1d4ed8}
-.note{font-size:12px;color:var(--muted);margin-top:10px}
-footer{text-align:center;color:var(--muted);font-size:13px;padding:25px 15px;border-top:1px solid #e2e8f0}
-[hidden]{display:none!important}
+:root {
+  --bg: #080d1b;
+  --surface: #111a2e;
+  --surface2: #17233b;
+  --line: #263550;
+  --text: #f3f6ff;
+  --muted: #94a3b8;
+  --blue: #5488ff;
+  --cyan: #50d6e8;
+  --green: #42d6a0;
+  --radius: 20px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 10% 0%, #142a50 0, transparent 38%),
+    radial-gradient(ellipse at 100% 30%, #10253b 0, transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+               BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible,
+select:focus-visible, a:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: min(1120px, calc(100% - 36px));
+  margin: auto;
+}
+
+header {
+  border-bottom: 1px solid #ffffff12;
+  background: #080d1bd9;
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -1.2px;
+}
+
+.logo span {
+  background: linear-gradient(100deg, #72a2ff, #50d6e8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav a:last-child {
+  color: #cbd8f3;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.hero {
+  padding: 76px 0 54px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border: 1px solid #5488ff45;
+  border-radius: 99px;
+  color: #b8ccff;
+  background: #5488ff12;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.eyebrow i {
+  width: 7px;
+  height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+h1 {
+  font-size: clamp(38px, 7vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -2.8px;
+  max-width: 850px;
+  margin: 24px auto 18px;
+}
+
+.gradient {
+  background: linear-gradient(100deg, #7ea6ff, #50d6e8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 17px;
+}
+
+.search-wrap {
+  max-width: 610px;
+  margin: 30px auto 0;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 19px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #91a6ca;
+  font-size: 21px;
+  pointer-events: none;
+}
+
+#search {
+  width: 100%;
+  min-height: 60px;
+  padding: 16px 20px 16px 54px;
+  border-radius: 16px;
+  border: 1px solid #344666;
+  background: #111b30;
+  color: white;
+  outline: none;
+  box-shadow: 0 12px 35px #0002;
+}
+
+#search::placeholder { color: #8292ad; }
+#search:focus { border-color: var(--blue); }
+
+.search-hint {
+  color: #8190a9;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+main { padding-bottom: 70px; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.section-head h2 {
+  font-size: 25px;
+  letter-spacing: -.7px;
+  margin: 0;
+}
+
+.section-head p {
+  color: var(--muted);
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.count {
+  color: #a9bce0;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, #151f35, #0e1628);
+  color: var(--text);
+  text-align: left;
+  padding: 23px;
+  min-height: 185px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform .2s, border-color .2s, background .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #5488ff99;
+  background: linear-gradient(145deg, #1b2b49, #101a30);
+}
+
+.card.featured {
+  border-color: #5488ff99;
+  background:
+    radial-gradient(ellipse at 100% 0%, #315da533, transparent 65%),
+    linear-gradient(145deg, #172747, #10182a);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.card-icon {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #5488ff1c;
+  border: 1px solid #5488ff30;
+  font-size: 24px;
+}
+
+.tag {
+  font-size: 10px;
+  color: #8fe5d0;
+  background: #42d6a015;
+  border: 1px solid #42d6a033;
+  border-radius: 99px;
+  padding: 4px 8px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.card h3 {
+  font-size: 17px;
+  margin: 0 0 5px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.card-bottom {
+  margin-top: auto;
+  padding-top: 18px;
+  color: #8eb0ff;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.panel {
+  margin-top: 30px;
+  padding: clamp(20px, 4vw, 36px);
+  border: 1px solid #344665;
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 100% 0%, #5488ff12, transparent 45%),
+    #10192b;
+  box-shadow: 0 25px 70px #0002;
+  scroll-margin-top: 95px;
+}
+
+.panel[hidden], .card[hidden], #empty[hidden] {
+  display: none !important;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 30px);
+  letter-spacing: -.8px;
+}
+
+.panel-head p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 5px 0 0;
+}
+
+.close-btn {
+  border: 1px solid var(--line);
+  background: #ffffff08;
+  color: #cbd5e1;
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.calc-display {
+  background: #080e1b;
+  border: 1px solid #273653;
+  border-radius: 18px;
+  padding: 22px;
+  text-align: right;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.calc-expression {
+  color: #8497b8;
+  min-height: 25px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.calc-number {
+  color: #f7f9ff;
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 750;
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.keypad button {
+  min-height: 62px;
+  border: 1px solid #293954;
+  border-radius: 14px;
+  background: #19253a;
+  color: #f1f5ff;
+  font-size: 21px;
+  font-weight: 650;
+  transition: background .15s, transform .15s;
+}
+
+.keypad button:hover {
+  background: #263b5c;
+  transform: translateY(-1px);
+}
+
+.keypad .operator {
+  color: #a9c4ff;
+  background: #233658;
+}
+
+.keypad .clear {
+  color: #ffaaaa;
+  background: #3a202c;
+  border-color: #60303e;
+}
+
+.keypad .equals {
+  color: white;
+  background: linear-gradient(135deg, #3977f6, #5756e8);
+  border-color: transparent;
+}
+
+.panel-note {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 15px 0 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.field label {
+  display: block;
+  color: #bdcbe1;
+  font-size: 13px;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+
+.field input, .field select {
+  width: 100%;
+  min-height: 51px;
+  padding: 12px 14px;
+  border: 1px solid #344665;
+  border-radius: 12px;
+  background: #0a1221;
+  color: white;
+}
+
+.field input::placeholder { color: #64748b; }
+
+.primary-btn {
+  width: 100%;
+  margin-top: 20px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 13px;
+  color: white;
+  font-weight: 800;
+  background: linear-gradient(100deg, #3977f6, #5659e9);
+  box-shadow: 0 8px 22px #315ff52b;
+}
+
+.primary-btn:hover { filter: brightness(1.12); }
+
+.result {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #42d6a033;
+  border-radius: 15px;
+  background: #42d6a00b;
+}
+
+.result[hidden] { display: none; }
+
+.result-label {
+  color: #8fe5c9;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.result-value {
+  font-size: clamp(25px, 5vw, 34px);
+  font-weight: 800;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.result-detail {
+  color: #a9b8ce;
+  font-size: 13px;
+  margin-top: 6px;
+  white-space: pre-line;
+}
+
+#empty {
+  text-align: center;
+  border: 1px dashed #344665;
+  border-radius: 18px;
+  padding: 40px 20px;
+  color: var(--muted);
+  margin-top: 18px;
+}
+
+#empty strong {
+  display: block;
+  color: #e2e8f0;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+footer {
+  border-top: 1px solid #ffffff12;
+  padding: 28px 0;
+  color: #8492aa;
+  font-size: 13px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+footer strong { color: #cbd5e1; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero { padding: 54px 0 38px; }
+  h1 { letter-spacing: -1.6px; }
+  .card { padding: 17px; min-height: 175px; }
+}
+
+@media (max-width: 480px) {
+  .container { width: min(100% - 24px, 1120px); }
+  .nav { min-height: 65px; }
+  .logo { font-size: 22px; }
+  .nav a:last-child { font-size: 12px; }
+  .grid { grid-template-columns: 1fr; gap: 12px; }
+  .card { min-height: 145px; }
+  .card-top { margin-bottom: 13px; }
+  .form-grid { grid-template-columns: 1fr; gap: 14px; }
+  .keypad { gap: 7px; }
+  .keypad button { min-height: 55px; border-radius: 11px; }
+  .panel { padding: 18px; }
+  .panel-head { gap: 8px; }
+  .close-btn { padding: 7px 9px; }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <nav>
-    <a class="logo" href="#">Calc<span>Master</span></a>
-    <a href="#calculators">All Calculators ↓</a>
-  </nav>
-  <div class="hero">
-    <h1>Every Calculator. One Place.</h1>
-    <p>Simple, useful and free online calculators for everyday life.</p>
-    <input class="search" id="search" placeholder="🔎 Search calculators..." aria-label="Search calculators">
+  <div class="container nav">
+    <a href="#" class="logo" aria-label="CalcMaster home">
+      Calc<span>Master</span>
+    </a>
+    <a href="#calculators">Explore Calculators ↓</a>
   </div>
 </header>
 
-<main class="wrap" id="calculators">
-  <h2 class="section-title">Choose a Calculator</h2>
-  <div class="cards" id="cards">
-    <button class="card active" data-tool="basic">
-      <div class="emoji">🧮</div><h3>Basic Calculator</h3>
-      <p>Add, subtract, multiply and divide.</p>
-    </button>
-    <button class="card" data-tool="percent">
-      <div class="emoji">％</div><h3>Percentage Calculator</h3>
-      <p>Calculate percentages quickly.</p>
-    </button>
-    <button class="card" data-tool="gst">
-      <div class="emoji">🧾</div><h3>GST Calculator</h3>
-      <p>Calculate GST and total price.</p>
-    </button>
-    <button class="card" data-tool="age">
-      <div class="emoji">🎂</div><h3>Age Calculator</h3>
-      <p>Find your age in years, months and days.</p>
-    </button>
-    <button class="card" data-tool="emi">
-      <div class="emoji">🏦</div><h3>EMI Calculator</h3>
-      <p>Estimate monthly loan payments.</p>
-    </button>
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><i></i> Free online tools</div>
+    <h1>Every Calculator.<br><span class="gradient">One Place.</span></h1>
+    <p>Smart, simple and reliable calculators for your everyday life. Get your answer in seconds.</p>
+
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input id="search" type="search"
+        placeholder="Search calculators... e.g. GST, EMI, age"
+        autocomplete="off" aria-label="Search calculators">
+    </div>
+    <div class="search-hint">Try “percentage”, “GST”, “age” or “loan”</div>
+  </div>
+</section>
+
+<main class="container" id="calculators">
+
+  <div class="section-head">
+    <div>
+      <h2>Choose your calculator</h2>
+      <p>Useful tools, all in one place.</p>
+    </div>
+    <span class="count" id="count">6 calculators</span>
   </div>
 
-  <section class="panel" id="tool-basic">
-    <h2>Basic Calculator</h2><p class="sub">Enter two numbers and choose an operation.</p>
-    <div class="fields">
-      <div><label for="b1">First number</label><input id="b1" type="number" step="any" placeholder="e.g. 125"></div>
-      <div><label for="op">Operation</label><select id="op"><option value="+">Addition (+)</option><option value="-">Subtraction (−)</option><option value="*">Multiplication (×)</option><option value="/">Division (÷)</option></select></div>
-      <div><label for="b2">Second number</label><input id="b2" type="number" step="any" placeholder="e.g. 25"></div>
+  <div class="grid" id="cards">
+
+    <button class="card featured" data-tool="basic"
+      data-search="normal basic standard math arithmetic calculator">
+      <div class="card-top">
+        <span class="card-icon">🧮</span>
+        <span class="tag">POPULAR</span>
+      </div>
+      <h3>Normal Calculator</h3>
+      <p>Add, subtract, multiply and divide with a familiar keypad.</p>
+      <span class="card-bottom">Open calculator →</span>
+    </button>
+
+    <button class="card" data-tool="percentage"
+      data-search="percentage percent discount increase decrease">
+      <div class="card-top"><span class="card-icon">％</span></div>
+      <h3>Percentage Calculator</h3>
+      <p>Find percentages, increases and decreases.</p>
+      <span class="card-bottom">Calculate →</span>
+    </button>
+
+    <button class="card" data-tool="gst"
+      data-search="gst tax goods services tax inclusive exclusive">
+      <div class="card-top"><span class="card-icon">🧾</span></div>
+      <h3>GST Calculator</h3>
+      <p>Calculate GST amounts and total prices.</p>
+      <span class="card-bottom">Calculate →</span>
+    </button>
+
+    <button class="card" data-tool="age"
+      data-search="age birthday date of birth years months days">
+      <div class="card-top"><span class="card-icon">🎂</span></div>
+      <h3>Age Calculator</h3>
+      <p>Find your age in years, months and days.</p>
+      <span class="card-bottom">Calculate →</span>
+    </button>
+
+    <button class="card" data-tool="emi"
+      data-search="emi loan monthly installment interest payment">
+      <div class="card-top"><span class="card-icon">🏦</span></div>
+      <h3>EMI Calculator</h3>
+      <p>Estimate monthly loan payments and interest.</p>
+      <span class="card-bottom">Calculate →</span>
+    </button>
+
+    <button class="card" data-tool="discount"
+      data-search="discount sale offer savings final price">
+      <div class="card-top"><span class="card-icon">🏷️</span></div>
+      <h3>Discount Calculator</h3>
+      <p>Find your savings and final sale price.</p>
+      <span class="card-bottom">Calculate →</span>
+    </button>
+
+  </div>
+
+  <div id="empty" hidden>
+    <strong>No calculator found</strong>
+    Try another name, such as GST, age, EMI or discount.
+  </div>
+
+  <!-- NORMAL CALCULATOR -->
+  <section class="panel" id="tool-basic" hidden>
+    <div class="panel-head">
+      <div>
+        <h2>Normal Calculator</h2>
+        <p>Your everyday calculator, right here.</p>
+      </div>
+      <button class="close-btn" data-close>✕ Close</button>
     </div>
-    <button class="primary" onclick="basic()">Calculate</button><div class="result" id="r-basic" aria-live="polite"></div>
+
+    <div class="calc-display">
+      <div class="calc-expression" id="calc-expression"
+        aria-live="polite"></div>
+      <div class="calc-number" id="calc-number">0</div>
+    </div>
+
+    <div class="keypad">
+      <button class="clear" data-key="clear">AC</button>
+      <button data-key="back">⌫</button>
+      <button class="operator" data-key="percent">%</button>
+      <button class="operator" data-op="/">÷</button>
+
+      <button data-digit="7">7</button>
+      <button data-digit="8">8</button>
+      <button data-digit="9">9</button>
+      <button class="operator" data-op="*">×</button>
+
+      <button data-digit="4">4</button>
+      <button data-digit="5">5</button>
+      <button data-digit="6">6</button>
+      <button class="operator" data-op="-">−</button>
+
+      <button data-digit="1">1</button>
+      <button data-digit="2">2</button>
+      <button data-digit="3">3</button>
+      <button class="operator" data-op="+">+</button>
+
+      <button data-key="sign">+/−</button>
+      <button data-digit="0">0</button>
+      <button data-key="decimal">.</button>
+      <button class="equals" data-key="equals">=</button>
+    </div>
+    <p class="panel-note">Keyboard supported: numbers, +, −, *, /, Enter, Backspace and Escape.</p>
   </section>
 
-  <section class="panel" id="tool-percent" hidden>
-    <h2>Percentage Calculator</h2><p class="sub">Find X% of a number.</p>
-    <div class="fields">
-      <div><label for="p1">Percentage (%)</label><input id="p1" type="number" step="any" placeholder="e.g. 15"></div>
-      <div><label for="p2">Number</label><input id="p2" type="number" step="any" placeholder="e.g. 2000"></div>
+  <!-- PERCENTAGE -->
+  <section class="panel" id="tool-percentage" hidden>
+    <div class="panel-head">
+      <div>
+        <h2>Percentage Calculator</h2>
+        <p>Calculate a percentage or compare two values.</p>
+      </div>
+      <button class="close-btn" data-close>✕ Close</button>
     </div>
-    <button class="primary" onclick="percent()">Calculate</button><div class="result" id="r-percent" aria-live="polite"></div>
+
+    <div class="field">
+      <label for="pct-mode">Calculation type</label>
+      <select id="pct-mode">
+        <option value="of">What is X% of a number?</option>
+        <option value="is">X is what percent of Y?</option>
+        <option value="change">Percentage change from X to Y</option>
+      </select>
+    </div>
+
+    <div class="form-grid" style="margin-top:18px">
+      <div class="field">
+        <label id="pct-label-a" for="pct-a">Percentage (%)</label>
+        <input id="pct-a" type="number" step="any" placeholder="e.g. 20">
+      </div>
+      <div class="field">
+        <label id="pct-label-b" for="pct-b">Number</label>
+        <input id="pct-b" type="number" step="any" placeholder="e.g. 500">
+      </div>
+    </div>
+
+    <button class="primary-btn" id="pct-go">Calculate percentage</button>
+    <div class="result" id="pct-result" hidden aria-live="polite">
+      <div class="result-label">Result</div>
+      <div class="result-value" id="pct-value"></div>
+      <div class="result-detail" id="pct-detail"></div>
+    </div>
   </section>
 
+  <!-- GST -->
   <section class="panel" id="tool-gst" hidden>
-    <h2>GST Calculator</h2><p class="sub">Choose whether GST should be added to or extracted from the entered amount.</p>
-    <div class="fields">
-      <div><label for="gamount">Amount (₹)</label><input id="gamount" type="number" min="0" step="any" placeholder="e.g. 1000"></div>
-      <div><label for="grate">GST rate</label><select id="grate"><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select></div>
-      <div><label for="gmode">Amount type</label><select id="gmode"><option value="add">GST exclusive — add GST</option><option value="remove">GST inclusive — extract GST</option></select></div>
+    <div class="panel-head">
+      <div>
+        <h2>GST Calculator</h2>
+        <p>Calculate GST on a price in seconds.</p>
+      </div>
+      <button class="close-btn" data-close>✕ Close</button>
     </div>
-    <button class="primary" onclick="gst()">Calculate GST</button><div class="result" id="r-gst" aria-live="polite"></div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="gst-price">Amount (₹)</label>
+        <input id="gst-price" type="number" min="0" step="any"
+          placeholder="e.g. 1000">
+      </div>
+      <div class="field">
+        <label for="gst-rate">GST rate</label>
+        <select id="gst-rate">
+          <option value="0">0%</option>
+          <option value="5">5%</option>
+          <option value="12">12%</option>
+          <option value="18" selected>18%</option>
+          <option value="28">28%</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="gst-mode">Price type</label>
+        <select id="gst-mode">
+          <option value="exclusive">GST not included</option>
+          <option value="inclusive">GST already included</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="primary-btn" id="gst-go">Calculate GST</button>
+    <div class="result" id="gst-result" hidden aria-live="polite">
+      <div class="result-label" id="gst-result-label">Total amount</div>
+      <div class="result-value" id="gst-total"></div>
+      <div class="result-detail" id="gst-detail"></div>
+    </div>
   </section>
 
+  <!-- AGE -->
   <section class="panel" id="tool-age" hidden>
-    <h2>Age Calculator</h2><p class="sub">Calculate your age from your date of birth.</p>
-    <div class="fields">
-      <div><label for="dob">Date of birth</label><input id="dob" type="date"></div>
-      <div><label for="asof">Age on date</label><input id="asof" type="date"></div>
+    <div class="panel-head">
+      <div>
+        <h2>Age Calculator</h2>
+        <p>Calculate your age between two dates.</p>
+      </div>
+      <button class="close-btn" data-close>✕ Close</button>
     </div>
-    <button class="primary" onclick="age()">Calculate Age</button><div class="result" id="r-age" aria-live="polite"></div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="birth-date">Date of birth</label>
+        <input id="birth-date" type="date">
+      </div>
+      <div class="field">
+        <label for="age-today">Calculate age on</label>
+        <input id="age-today" type="date">
+      </div>
+    </div>
+
+    <button class="primary-btn" id="age-go">Calculate my age</button>
+    <div class="result" id="age-result" hidden aria-live="polite">
+      <div class="result-label">Your age</div>
+      <div class="result-value" id="age-value"></div>
+      <div class="result-detail" id="age-detail"></div>
+    </div>
   </section>
 
+  <!-- EMI -->
   <section class="panel" id="tool-emi" hidden>
-    <h2>EMI Calculator</h2><p class="sub">Estimate your monthly loan installment.</p>
-    <div class="fields">
-      <div><label for="loan">Loan amount (₹)</label><input id="loan" type="number" min="0" step="any" placeholder="e.g. 500000"></div>
-      <div><label for="rate">Annual interest rate (%)</label><input id="rate" type="number" min="0" step="any" placeholder="e.g. 9"></div>
-      <div><label for="years">Loan tenure (years)</label><input id="years" type="number" min="0" step="any" placeholder="e.g. 5"></div>
+    <div class="panel-head">
+      <div>
+        <h2>EMI Calculator</h2>
+        <p>Estimate your monthly loan repayment.</p>
+      </div>
+      <button class="close-btn" data-close>✕ Close</button>
     </div>
-    <button class="primary" onclick="emi()">Calculate EMI</button><div class="result" id="r-emi" aria-live="polite"></div>
-    <p class="note">Estimate only. Actual lender charges and repayment terms may differ.</p>
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="emi-principal">Loan amount (₹)</label>
+        <input id="emi-principal" type="number" min="0"
+          step="any" placeholder="e.g. 500000">
+      </div>
+      <div class="field">
+        <label for="emi-rate">Annual interest rate (%)</label>
+        <input id="emi-rate" type="number" min="0"
+          step="any" placeholder="e.g. 9">
+      </div>
+      <div class="field">
+        <label for="emi-years">Loan tenure (years)</label>
+        <input id="emi-years" type="number" min="0"
+          step="any" placeholder="e.g. 5">
+      </div>
+    </div>
+
+    <button class="primary-btn" id="emi-go">Calculate EMI</button>
+    <div class="result" id="emi-result" hidden aria-live="polite">
+      <div class="result-label">Monthly EMI</div>
+      <div class="result-value" id="emi-value"></div>
+      <div class="result-detail" id="emi-detail"></div>
+    </div>
   </section>
+
+  <!-- DISCOUNT -->
+  <section class="panel" id="tool-discount" hidden>
+    <div class="panel-head">
+      <div>
+        <h2>Discount Calculator</h2>
+        <p>See how much you save on a sale.</p>
+      </div>
+      <button class="close-btn" data-close>✕ Close</button>
+    </div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="discount-price">Original price (₹)</label>
+        <input id="discount-price" type="number" min="0"
+          step="any" placeholder="e.g. 2000">
+      </div>
+      <div class="field">
+        <label for="discount-rate">Discount (%)</label>
+        <input id="discount-rate" type="number" min="0"
+          max="100" step="any" placeholder="e.g. 25">
+      </div>
+    </div>
+
+    <button class="primary-btn" id="discount-go">Calculate discount</button>
+    <div class="result" id="discount-result" hidden aria-live="polite">
+      <div class="result-label">Price after discount</div>
+      <div class="result-value" id="discount-value"></div>
+      <div class="result-detail" id="discount-detail"></div>
+    </div>
+  </section>
+
 </main>
 
-<footer>© <span id="year"></span> CalcMaster · Free online calculators</footer>
+<footer>
+  <div class="container footer-inner">
+    <span><strong>CalcMaster</strong> — Every Calculator, One Place.</span>
+    <span>Free online tools · © <span id="year"></span> CalcMaster</span>
+  </div>
+</footer>
 
 <script>
-const $=id=>document.getElementById(id);
-const money=n=>n.toLocaleString('en-IN',{maximumFractionDigits:2});
-function show(id,html){$(id).innerHTML=html;$(id).style.display='block'}
-function val(id){return $(id).value.trim()===''?NaN:Number($(id).value)}
-function valid(nums){return nums.every(Number.isFinite)}
-function todayLocal(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-$('asof').value=todayLocal();$('asof').max=todayLocal();$('dob').max=todayLocal();
-$('year').textContent=new Date().getFullYear();
+"use strict";
 
-function basic(){
- const a=val('b1'),b=val('b2'),op=$('op').value;
- if(!valid([a,b]))return show('r-basic','Please enter both numbers.');
- if(op==='/'&&b===0)return show('r-basic','Cannot divide by zero.');
- const result=op==='+'?a+b:op==='-'?a-b:op==='*'?a*b:a/b;
- show('r-basic','Result<br><strong>'+money(result)+'</strong>');
-}
-function percent(){
- const p=val('p1'),n=val('p2');
- if(!valid([p,n]))return show('r-percent','Please enter both values.');
- show('r-percent',p+'% of '+money(n)+' is<br><strong>'+money(n*p/100)+'</strong>');
-}
-function gst(){
- const amount=val('gamount'),rate=Number($('grate').value),mode=$('gmode').value;
- if(!Number.isFinite(amount)||amount<0)return show('r-gst','Enter a valid non-negative amount.');
- let tax,base,total;
- if(mode==='add'){base=amount;tax=base*rate/100;total=base+tax}
- else{total=amount;base=total/(1+rate/100);tax=total-base}
- show('r-gst','Base amount: ₹'+money(base)+'<br>GST ('+rate+'%): ₹'+money(tax)+'<br>Total amount: <strong>₹'+money(total)+'</strong>');
-}
-function age(){
- const birth=$('dob').value,end=$('asof').value;
- if(!birth||!end)return show('r-age','Please select both dates.');
- const b=new Date(birth+'T00:00:00'),e=new Date(end+'T00:00:00');
- if(b>e)return show('r-age','Date of birth must be on or before the selected date.');
- let y=e.getFullYear()-b.getFullYear(),m=e.getMonth()-b.getMonth(),d=e.getDate()-b.getDate();
- if(d<0){m--;d+=new Date(e.getFullYear(),e.getMonth(),0).getDate()}
- if(m<0){y--;m+=12}
- show('r-age','Your age is<br><strong>'+y+' years, '+m+' months, '+d+' days</strong>');
-}
-function emi(){
- const principal=val('loan'),annual=val('rate'),years=val('years');
- if(!valid([principal,annual,years])||principal<=0||annual<0||years<=0)
- return show('r-emi','Enter a positive loan amount and tenure, and a non-negative interest rate.');
- const months=years*12,r=annual/1200;
- const payment=r===0?principal/months:principal*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1);
- const total=payment*months,interest=total-principal;
- show('r-emi','Monthly EMI<br><strong>₹'+money(payment)+'</strong><br>Total interest: ₹'+money(interest)+'<br>Total repayment: ₹'+money(total));
-}
+const $ = id => document.getElementById(id);
 
-document.querySelectorAll('.card').forEach(card=>card.addEventListener('click',()=>{
- document.querySelectorAll('.card').forEach(c=>c.classList.toggle('active',c===card));
- document.querySelectorAll('.panel').forEach(p=>p.hidden=true);
- $('tool-'+card.dataset.tool).hidden=false;
- $('tool-'+card.dataset.tool).scrollIntoView({behavior:'smooth',block:'start'});
-}));
-$('search').addEventListener('input',()=>{
- const q=$('search').value.toLowerCase();
- document.querySelectorAll('.card').forEach(card=>{
- card.hidden=!card.innerText.toLowerCase().includes(q);
- });
+const money = n => n.toLocaleString("en-IN", {
+  style: "currency",
+  currency: "INR",
+  maximumFractionDigits: 2
 });
+
+const number = n => n.toLocaleString("en-IN", {
+  maximumFractionDigits: 8
+});
+
+const getNum = id => {
+  const raw = $(id).value.trim();
+  if (raw === "") return null;
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : null;
+};
+
+function showResult(id, valueId, value, detailId, detail) {
+  $(valueId).textContent = value;
+  if (detailId) $(detailId).textContent = detail || "";
+  $(id).hidden = false;
+}
+
+function invalid(id, message) {
+  $(id).hidden = false;
+  $(id).querySelector(".result-label").textContent = "Check your input";
+  $(id).querySelector(".result-value").textContent = message;
+  const detail = $(id).querySelector(".result-detail");
+  if (detail) detail.textContent = "";
+}
+
+const cards = [...document.querySelectorAll(".card")];
+const panels = [...document.querySelectorAll(".panel")];
+let activeTool = null;
+
+function openTool(tool) {
+  const panel = $("tool-" + tool);
+  if (!panel) return;
+
+  activeTool = tool;
+  panels.forEach(p => p.hidden = p !== panel);
+  panel.hidden = false;
+  panel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function closeTool() {
+  panels.forEach(p => p.hidden = true);
+  activeTool = null;
+}
+
+cards.forEach(card => {
+  card.addEventListener("click", () => openTool(card.dataset.tool));
+});
+
+document.querySelectorAll("[data-close]").forEach(btn => {
+  btn.addEventListener("click", closeTool);
+});
+
+const search = $("search");
+
+function filterCards() {
+  const q = search.value.trim().toLowerCase();
+  let shown = 0;
+
+  cards.forEach(card => {
+    const text = (
+      card.innerText + " " + card.dataset.search
+    ).toLowerCase();
+
+    const match = text.includes(q);
+    card.hidden = !match;
+    if (match) shown++;
+  });
+
+  $("count").textContent = shown + (shown === 1
+    ? " calculator" : " calculators");
+  $("empty").hidden = shown !== 0;
+
+  if (activeTool && q) {
+    const activeCard = cards.find(c =>
+      c.dataset.tool === activeTool
+    );
+    if (activeCard && activeCard.hidden) closeTool();
+  }
+}
+
+search.addEventListener("input", filterCards);
+
+// NORMAL CALCULATOR
+let calcValue = "0";
+let calcStored = null;
+let calcOp = null;
+let calcWaiting = false;
+let calcExpression = "";
+
+function calcRender() {
+  $("calc-number").textContent = calcValue;
+  $("calc-expression").textContent = calcExpression;
+}
+
+function calcClear() {
+  calcValue = "0";
+  calcStored = null;
+  calcOp = null;
+  calcWaiting = false;
+  calcExpression = "";
+  calcRender();
+}
+
+function calcDigit(d) {
+  if (calcWaiting || calcValue === "Error") {
+    calcValue = d;
+    calcWaiting = false;
+  } else {
+    calcValue = calcValue === "0" ? d : calcValue + d;
+  }
+  calcRender();
+}
+
+function calcDecimal() {
+  if (calcWaiting || calcValue === "Error") {
+    calcValue = "0.";
+    calcWaiting = false;
+  } else if (!calcValue.includes(".")) {
+    calcValue += ".";
+  }
+  calcRender();
+}
+
+function calcBack() {
+  if (calcWaiting || calcValue === "Error") {
+    calcValue = "0";
+    calcWaiting = false;
+  } else {
+    calcValue = calcValue.length > 1
+      ? calcValue.slice(0, -1) : "0";
+    if (calcValue === "-") calcValue = "0";
+  }
+  calcRender();
+}
+
+function calcSign() {
+  if (calcValue !== "0" && calcValue !== "Error") {
+    calcValue = String(-Number(calcValue));
+  }
+  calcRender();
+}
+
+function calcCompute(a, b, op) {
+  if (op === "+") return a + b;
+  if (op === "-") return a - b;
+  if (op === "*") return a * b;
+  if (op === "/") return b === 0 ? null : a / b;
+  return b;
+}
+
+function calcOperator(op) {
+  if (calcValue === "Error") calcClear();
+
+  const current = Number(calcValue);
+
+  if (calcOp && !calcWaiting) {
+    const result = calcCompute(calcStored, current, calcOp);
+
+    if (result === null || !Number.isFinite(result)) {
+      calcValue = "Error";
+      calcStored = null;
+      calcOp = null;
+      calcWaiting = true;
+      calcExpression = "Cannot divide by zero";
+      calcRender();
+      return;
+    }
+
+    calcValue = String(Number(result.toPrecision(12)));
+  } else {
+    calcStored = current;
+  }
+
+  calcOp = op;
+  calcWaiting = true;
+  calcExpression = calcValue + " " +
+    ({"+":"+","-":"−","*":"×","/":"÷"}[op]);
+  calcRender();
+}
+
+function calcEquals() {
+  if (!calcOp || calcStored === null ||
+      calcValue === "Error") return;
+
+  const a = calcStored;
+  const b = Number(calcValue);
+  const op = calcOp;
+  const result = calcCompute(a, b, op);
+
+  if (result === null || !Number.isFinite(result)) {
+    calcValue = "Error";
+    calcExpression = "Cannot divide by zero";
+  } else {
+    calcExpression = a + " " +
+      ({"+":"+","-":"−","*":"×","/":"÷"}[op]) +
+      " " + b + " =";
+    calcValue = String(Number(result.toPrecision(12)));
+  }
+
+  calcStored = null;
+  calcOp = null;
+  calcWaiting = true;
+  calcRender();
+}
+
+document.querySelectorAll("[data-digit]").forEach(btn => {
+  btn.addEventListener("click", () => calcDigit(btn.dataset.digit));
+});
+
+document.querySelectorAll("[data-op]").forEach(btn => {
+  btn.addEventListener("click", () => calcOperator(btn.dataset.op));
+});
+
+document.querySelectorAll("[data-key]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const key = btn.dataset.key;
+    if (key === "clear") calcClear();
+    if (key === "back") calcBack();
+    if (key === "percent") {
+      if (calcValue !== "Error") {
+        calcValue = String(Number(calcValue) / 100);
+        calcWaiting = true;
+        calcRender();
+      }
+    }
+    if (key === "sign") calcSign();
+    if (key === "decimal") calcDecimal();
+    if (key === "equals") calcEquals();
+  });
+});
+
+document.addEventListener("keydown", e => {
+  if (activeTool !== "basic") return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+  if (/^[0-9]$/.test(e.key)) {
+    e.preventDefault();
+    calcDigit(e.key);
+  } else if (e.key === ".") {
+    e.preventDefault();
+    calcDecimal();
+  } else if (["+", "-", "*", "/"].includes(e.key)) {
+    e.preventDefault();
+    calcOperator(e.key);
+  } else if (e.key === "Enter" || e.key === "=") {
+    e.preventDefault();
+    calcEquals();
+  } else if (e.key === "Escape") {
+    calcClear();
+  } else if (e.key === "Backspace") {
+    e.preventDefault();
+    calcBack();
+  }
+});
+
+calcRender();
+
+// PERCENTAGE CALCULATOR
+const pctMode = $("pct-mode");
+
+function updatePctLabels() {
+  const mode = pctMode.value;
+  $("pct-label-a").textContent =
+    mode === "of" ? "Percentage (%)" :
+    mode === "is" ? "Value (X)" : "Original value (X)";
+  $("pct-label-b").textContent =
+    mode === "of" ? "Number" :
+    mode === "is" ? "Total value (Y)" : "New value (Y)";
+  $("pct-a").placeholder = mode === "of" ? "e.g. 20" : "e.g. 80";
+  $("pct-b").placeholder = mode === "of" ? "e.g. 500" : "e.g. 100";
+}
+
+pctMode.addEventListener("change", updatePctLabels);
+
+$("pct-go").addEventListener("click", () => {
+  const a = getNum("pct-a");
+  const b = getNum("pct-b");
+  if (a === null || b === null) return invalid("pct-result", "Enter both values.");
+
+  let result, detail;
+  if (pctMode.value === "of") {
+    result = a / 100 * b;
+    detail = number(a) + "% of " + number(b) + " = " + number(result);
+  } else if (pctMode.value === "is") {
+    if (b === 0) return invalid("pct-result", "Total cannot be zero.");
+    result = a / b * 100;
+    detail = number(a) + " is " + number(result) + "% of " + number(b);
+  } else {
+    if (a === 0) return invalid("pct-result", "Original value cannot be zero.");
+    result = (b - a) / Math.abs(a) * 100;
+    detail = result > 0 ? "Increase" : result < 0 ? "Decrease" : "No change";
+  }
+
+  showResult("pct-result", "pct-value",
+    number(result) + (pctMode.value === "of" ? "" : "%"),
+    "pct-detail", detail);
+});
+
+// GST CALCULATOR
+$("gst-go").addEventListener("click", () => {
+  const amount = getNum("gst-price");
+  const rate = Number($("gst-rate").value);
+  const mode = $("gst-mode").value;
+
+  if (amount === null || amount < 0)
+    return invalid("gst-result", "Enter a valid amount.");
+
+  let base, tax, total;
+  if (mode === "exclusive") {
+    base = amount;
+    tax = base * rate / 100;
+    total = base + tax;
+  } else {
+    total = amount;
+    base = total / (1 + rate / 100);
+    tax = total - base;
+  }
+
+  const detail = "Base price: " + money(base) +
+    "\nGST amount: " + money(tax) +
+    "\nGST rate: " + rate + "%";
+
+  showResult("gst-result", "gst-total", money(total),
+    "gst-detail", detail);
+  $("gst-result-label").textContent =
+    mode === "exclusive" ? "Total including GST" : "Price including GST";
+});
+
+// AGE CALCULATOR
+function parseLocalDate(value) {
+  if (!value) return null;
+  const parts = value.split("-").map(Number);
+  if (parts.length !== 3) return null;
+  return new Date(parts[0], parts[1] - 1, parts[2]);
+}
+
+function daysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+const today = new Date();
+const todayISO = [
+  today.getFullYear(),
+  String(today.getMonth() + 1).padStart(2, "0"),
+  String(today.getDate()).padStart(2, "0")
+].join("-");
+
+$("age-today").value = todayISO;
+$("age-today").max = todayISO;
+$("birth-date").max = todayISO;
+
+$("age-go").addEventListener("click", () => {
+  const birth = parseLocalDate($("birth-date").value);
+  const end = parseLocalDate($("age-today").value);
+
+  if (!birth || !end) return invalid("age-result", "Choose both dates.");
+  if (birth > end) return invalid("age-result", "Birth date must be before the end date.");
+
+  let years = end.getFullYear() - birth.getFullYear();
+  let months = end.getMonth() - birth.getMonth();
+  let days = end.getDate() - birth.getDate();
+
+  if (days < 0) {
+    months--;
+    const previousMonth = (end.getMonth() + 11) % 12;
+    const previousYear = end.getMonth() === 0
+      ? end.getFullYear() - 1 : end.getFullYear();
+    days += daysInMonth(previousYear, previousMonth);
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const totalDays = Math.floor(
+    (Date.UTC(end.getFullYear(), end.getMonth(), end.getDate()) -
+     Date.UTC(birth.getFullYear(), birth.getMonth(), birth.getDate()))
+    / 86400000
+  );
+
+  showResult("age-result", "age-value",
+    years + " years, " + months + " months",
+    "age-detail", days + " days\nTotal: " +
+    totalDays.toLocaleString("en-IN") + " days");
+});
+
+// EMI CALCULATOR
+$("emi-go").addEventListener("click", () => {
+  const principal = getNum("emi-principal");
+  const annualRate = getNum("emi-rate");
+  const years = getNum("emi-years");
+
+  if (principal === null || annualRate === null || years === null ||
+      principal <= 0 || annualRate < 0 || years <= 0) {
+    return invalid("emi-result", "Enter a valid loan, rate and tenure.");
+  }
+
+  const months = Math.round(years * 12);
+  if (months < 1 || months > 1200)
+    return invalid("emi-result", "Tenure must be between 1 month and 100 years.");
+
+  const r = annualRate / 1200;
+  const emi = r === 0
+    ? principal / months
+    : principal * r * Math.pow(1 + r, months) /
+      (Math.pow(1 + r, months) - 1);
+
+  const total = emi * months;
+  const interest = total - principal;
+
+  showResult("emi-result", "emi-value", money(emi),
+    "emi-detail",
+    "Total payment: " + money(total) +
+    "\nTotal interest: " + money(interest) +
+    "\nNumber of payments: " + months);
+});
+
+// DISCOUNT CALCULATOR
+$("discount-go").addEventListener("click", () => {
+  const price = getNum("discount-price");
+  const rate = getNum("discount-rate");
+
+  if (price === null || rate === null || price < 0 ||
+      rate < 0 || rate > 100) {
+    return invalid("discount-result", "Enter a valid price and discount (0–100%).");
+  }
+
+  const saved = price * rate / 100;
+  const finalPrice = price - saved;
+
+  showResult("discount-result", "discount-value", money(finalPrice),
+    "discount-detail",
+    "You save: " + money(saved) +
+    "\nDiscount: " + rate + "%");
+});
+
+$("year").textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
