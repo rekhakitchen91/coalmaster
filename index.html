@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CalcMaster offers free online basic, percentage, GST, age and EMI calculators.">
+<title>CalcMaster - Free Online Calculators</title>
+<style>
+:root{--blue:#2563eb;--dark:#10213b;--bg:#f4f7fc;--muted:#64748b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--dark)}
+header{background:#102a43;color:white;padding:25px 18px 35px}
+nav,.hero,.wrap{max-width:1050px;margin:auto}
+nav{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:800;color:white;text-decoration:none}
+.logo span{color:#60a5fa}
+nav a{color:#dbeafe;text-decoration:none}
+.hero{padding:35px 0 10px}
+.hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 12px}
+.hero p{color:#dbeafe;line-height:1.6;margin:0}
+.search{display:block;width:100%;max-width:550px;padding:15px 17px;border:0;border-radius:12px;margin-top:24px;font-size:16px}
+.wrap{padding:25px 18px 45px}
+.section-title{font-size:23px;margin:8px 0 18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.card{background:white;border:1px solid #e2e8f0;border-radius:15px;padding:20px;text-align:left;cursor:pointer;transition:.15s;color:var(--dark)}
+.card:hover,.card.active{border-color:var(--blue);box-shadow:0 5px 20px #2563eb15;transform:translateY(-2px)}
+.card .emoji{font-size:27px}
+.card h3{margin:12px 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+.panel{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:24px;margin-top:25px}
+.panel h2{margin:0 0 7px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 22px;line-height:1.5}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+input,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px;background:white;color:var(--dark)}
+button.primary{margin-top:18px;background:var(--blue);color:white;border:0;border-radius:9px;padding:13px 20px;font-size:15px;font-weight:700;cursor:pointer}
+button.primary:hover{background:#1d4ed8}
+.result{display:none;margin-top:20px;background:#eff6ff;border:1px solid #bfdbfe;padding:18px;border-radius:11px;line-height:1.7;overflow-wrap:anywhere}
+.result strong{font-size:24px;color:#1d4ed8}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:25px 15px;border-top:1px solid #e2e8f0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <a class="logo" href="#">Calc<span>Master</span></a>
+    <a href="#calculators">All Calculators ↓</a>
+  </nav>
+  <div class="hero">
+    <h1>Every Calculator. One Place.</h1>
+    <p>Simple, useful and free online calculators for everyday life.</p>
+    <input class="search" id="search" placeholder="🔎 Search calculators..." aria-label="Search calculators">
+  </div>
+</header>
+
+<main class="wrap" id="calculators">
+  <h2 class="section-title">Choose a Calculator</h2>
+  <div class="cards" id="cards">
+    <button class="card active" data-tool="basic">
+      <div class="emoji">🧮</div><h3>Basic Calculator</h3>
+      <p>Add, subtract, multiply and divide.</p>
+    </button>
+    <button class="card" data-tool="percent">
+      <div class="emoji">％</div><h3>Percentage Calculator</h3>
+      <p>Calculate percentages quickly.</p>
+    </button>
+    <button class="card" data-tool="gst">
+      <div class="emoji">🧾</div><h3>GST Calculator</h3>
+      <p>Calculate GST and total price.</p>
+    </button>
+    <button class="card" data-tool="age">
+      <div class="emoji">🎂</div><h3>Age Calculator</h3>
+      <p>Find your age in years, months and days.</p>
+    </button>
+    <button class="card" data-tool="emi">
+      <div class="emoji">🏦</div><h3>EMI Calculator</h3>
+      <p>Estimate monthly loan payments.</p>
+    </button>
+  </div>
+
+  <section class="panel" id="tool-basic">
+    <h2>Basic Calculator</h2><p class="sub">Enter two numbers and choose an operation.</p>
+    <div class="fields">
+      <div><label for="b1">First number</label><input id="b1" type="number" step="any" placeholder="e.g. 125"></div>
+      <div><label for="op">Operation</label><select id="op"><option value="+">Addition (+)</option><option value="-">Subtraction (−)</option><option value="*">Multiplication (×)</option><option value="/">Division (÷)</option></select></div>
+      <div><label for="b2">Second number</label><input id="b2" type="number" step="any" placeholder="e.g. 25"></div>
+    </div>
+    <button class="primary" onclick="basic()">Calculate</button><div class="result" id="r-basic" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="tool-percent" hidden>
+    <h2>Percentage Calculator</h2><p class="sub">Find X% of a number.</p>
+    <div class="fields">
+      <div><label for="p1">Percentage (%)</label><input id="p1" type="number" step="any" placeholder="e.g. 15"></div>
+      <div><label for="p2">Number</label><input id="p2" type="number" step="any" placeholder="e.g. 2000"></div>
+    </div>
+    <button class="primary" onclick="percent()">Calculate</button><div class="result" id="r-percent" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="tool-gst" hidden>
+    <h2>GST Calculator</h2><p class="sub">Choose whether GST should be added to or extracted from the entered amount.</p>
+    <div class="fields">
+      <div><label for="gamount">Amount (₹)</label><input id="gamount" type="number" min="0" step="any" placeholder="e.g. 1000"></div>
+      <div><label for="grate">GST rate</label><select id="grate"><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select></div>
+      <div><label for="gmode">Amount type</label><select id="gmode"><option value="add">GST exclusive — add GST</option><option value="remove">GST inclusive — extract GST</option></select></div>
+    </div>
+    <button class="primary" onclick="gst()">Calculate GST</button><div class="result" id="r-gst" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="tool-age" hidden>
+    <h2>Age Calculator</h2><p class="sub">Calculate your age from your date of birth.</p>
+    <div class="fields">
+      <div><label for="dob">Date of birth</label><input id="dob" type="date"></div>
+      <div><label for="asof">Age on date</label><input id="asof" type="date"></div>
+    </div>
+    <button class="primary" onclick="age()">Calculate Age</button><div class="result" id="r-age" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="tool-emi" hidden>
+    <h2>EMI Calculator</h2><p class="sub">Estimate your monthly loan installment.</p>
+    <div class="fields">
+      <div><label for="loan">Loan amount (₹)</label><input id="loan" type="number" min="0" step="any" placeholder="e.g. 500000"></div>
+      <div><label for="rate">Annual interest rate (%)</label><input id="rate" type="number" min="0" step="any" placeholder="e.g. 9"></div>
+      <div><label for="years">Loan tenure (years)</label><input id="years" type="number" min="0" step="any" placeholder="e.g. 5"></div>
+    </div>
+    <button class="primary" onclick="emi()">Calculate EMI</button><div class="result" id="r-emi" aria-live="polite"></div>
+    <p class="note">Estimate only. Actual lender charges and repayment terms may differ.</p>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> CalcMaster · Free online calculators</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const money=n=>n.toLocaleString('en-IN',{maximumFractionDigits:2});
+function show(id,html){$(id).innerHTML=html;$(id).style.display='block'}
+function val(id){return $(id).value.trim()===''?NaN:Number($(id).value)}
+function valid(nums){return nums.every(Number.isFinite)}
+function todayLocal(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+$('asof').value=todayLocal();$('asof').max=todayLocal();$('dob').max=todayLocal();
+$('year').textContent=new Date().getFullYear();
+
+function basic(){
+ const a=val('b1'),b=val('b2'),op=$('op').value;
+ if(!valid([a,b]))return show('r-basic','Please enter both numbers.');
+ if(op==='/'&&b===0)return show('r-basic','Cannot divide by zero.');
+ const result=op==='+'?a+b:op==='-'?a-b:op==='*'?a*b:a/b;
+ show('r-basic','Result<br><strong>'+money(result)+'</strong>');
+}
+function percent(){
+ const p=val('p1'),n=val('p2');
+ if(!valid([p,n]))return show('r-percent','Please enter both values.');
+ show('r-percent',p+'% of '+money(n)+' is<br><strong>'+money(n*p/100)+'</strong>');
+}
+function gst(){
+ const amount=val('gamount'),rate=Number($('grate').value),mode=$('gmode').value;
+ if(!Number.isFinite(amount)||amount<0)return show('r-gst','Enter a valid non-negative amount.');
+ let tax,base,total;
+ if(mode==='add'){base=amount;tax=base*rate/100;total=base+tax}
+ else{total=amount;base=total/(1+rate/100);tax=total-base}
+ show('r-gst','Base amount: ₹'+money(base)+'<br>GST ('+rate+'%): ₹'+money(tax)+'<br>Total amount: <strong>₹'+money(total)+'</strong>');
+}
+function age(){
+ const birth=$('dob').value,end=$('asof').value;
+ if(!birth||!end)return show('r-age','Please select both dates.');
+ const b=new Date(birth+'T00:00:00'),e=new Date(end+'T00:00:00');
+ if(b>e)return show('r-age','Date of birth must be on or before the selected date.');
+ let y=e.getFullYear()-b.getFullYear(),m=e.getMonth()-b.getMonth(),d=e.getDate()-b.getDate();
+ if(d<0){m--;d+=new Date(e.getFullYear(),e.getMonth(),0).getDate()}
+ if(m<0){y--;m+=12}
+ show('r-age','Your age is<br><strong>'+y+' years, '+m+' months, '+d+' days</strong>');
+}
+function emi(){
+ const principal=val('loan'),annual=val('rate'),years=val('years');
+ if(!valid([principal,annual,years])||principal<=0||annual<0||years<=0)
+ return show('r-emi','Enter a positive loan amount and tenure, and a non-negative interest rate.');
+ const months=years*12,r=annual/1200;
+ const payment=r===0?principal/months:principal*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1);
+ const total=payment*months,interest=total-principal;
+ show('r-emi','Monthly EMI<br><strong>₹'+money(payment)+'</strong><br>Total interest: ₹'+money(interest)+'<br>Total repayment: ₹'+money(total));
+}
+
+document.querySelectorAll('.card').forEach(card=>card.addEventListener('click',()=>{
+ document.querySelectorAll('.card').forEach(c=>c.classList.toggle('active',c===card));
+ document.querySelectorAll('.panel').forEach(p=>p.hidden=true);
+ $('tool-'+card.dataset.tool).hidden=false;
+ $('tool-'+card.dataset.tool).scrollIntoView({behavior:'smooth',block:'start'});
+}));
+$('search').addEventListener('input',()=>{
+ const q=$('search').value.toLowerCase();
+ document.querySelectorAll('.card').forEach(card=>{
+ card.hidden=!card.innerText.toLowerCase().includes(q);
+ });
+});
+</script>
+</body>
+</html>
