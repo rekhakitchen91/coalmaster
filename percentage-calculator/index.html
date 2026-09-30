@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Percentage Calculator – Free Online Calculator | CalcMaster</title>
+  <title>Percentage Calculator – Calculate Percentages Online | CalcMaster</title>
 
-  <meta name="description" content="Calculate percentages online for free with CalcMaster. Find X% of any number instantly using our simple and accurate percentage calculator.">
+  <meta name="description" content="Use CalcMaster's free percentage calculator to calculate percentages, find what percent one number is of another, and calculate percentage increase or decrease.">
+
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://rekhakitchen91.github.io/coalmaster/percentage-calculator/">
 
-  <meta name="theme-color" content="#087e8b">
+  <meta name="theme-color" content="#2563eb">
 
   <style>
     * {
@@ -20,169 +21,131 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f7fb;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
       color: #172033;
       line-height: 1.6;
     }
 
     header {
-      background: #087e8b;
+      background: #2563eb;
       color: white;
-      padding: 18px 16px;
+      padding: 22px 16px;
+      text-align: center;
     }
 
-    .header-inner {
-      max-width: 800px;
-      margin: auto;
+    header h1 {
+      margin: 0;
+      font-size: 28px;
     }
 
-    header a {
-      color: white;
+    header p {
+      margin: 6px 0 0;
+    }
+
+    nav {
+      background: white;
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    nav a {
+      color: #2563eb;
       text-decoration: none;
-      font-size: 21px;
       font-weight: bold;
     }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
+    main {
+      width: min(900px, 92%);
+      margin: 25px auto;
     }
 
-    .breadcrumb {
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .breadcrumb a,
-    .back-link {
-      color: #087e8b;
-    }
-
-    h1 {
-      font-size: clamp(28px, 5vw, 38px);
-      line-height: 1.2;
-      margin-bottom: 12px;
+    .calculator, .content {
+      background: white;
+      padding: 24px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 18px #0000000d;
     }
 
     h2 {
-      font-size: 23px;
       margin-top: 0;
-    }
-
-    .intro {
-      color: #536174;
-      font-size: 17px;
-    }
-
-    .card {
-      background: white;
-      padding: 24px;
-      border-radius: 16px;
-      margin: 22px 0;
-      box-shadow: 0 5px 22px rgba(20, 33, 61, 0.08);
+      color: #1d4ed8;
     }
 
     label {
       display: block;
+      margin: 16px 0 6px;
       font-weight: bold;
-      margin: 16px 0 7px;
     }
 
-    input {
+    input, select {
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       border: 1px solid #cbd5e1;
-      border-radius: 9px;
-      font-size: 17px;
+      border-radius: 8px;
+      font-size: 16px;
       background: white;
-      color: #172033;
-    }
-
-    input:focus {
-      outline: 2px solid #087e8b;
-      border-color: #087e8b;
     }
 
     button {
       width: 100%;
-      margin-top: 20px;
       padding: 14px;
-      border: none;
-      border-radius: 9px;
-      background: #087e8b;
+      margin-top: 20px;
+      border: 0;
+      border-radius: 8px;
+      background: #2563eb;
       color: white;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
 
     button:hover {
-      background: #06636d;
+      background: #1d4ed8;
     }
 
-    .secondary-button {
-      background: #e8f1f3;
-      color: #087e8b;
-      margin-top: 10px;
-    }
-
-    .secondary-button:hover {
-      background: #d6e8eb;
-    }
-
-    #result {
+    .result {
       margin-top: 20px;
       padding: 16px;
-      border-radius: 10px;
-      background: #e8f8f5;
-      color: #075e50;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
       font-size: 20px;
       font-weight: bold;
       overflow-wrap: anywhere;
     }
 
+    .error {
+      color: #b91c1c;
+      font-size: 15px;
+    }
+
     .formula {
-      padding: 14px;
-      background: #f0f5f9;
-      border-radius: 9px;
-      font-weight: bold;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 8px;
       overflow-wrap: anywhere;
-    }
-
-    .muted {
-      color: #536174;
-    }
-
-    .faq h3 {
-      font-size: 17px;
-      margin-bottom: 5px;
-    }
-
-    .faq p {
-      margin-top: 5px;
-      color: #536174;
     }
 
     footer {
       text-align: center;
-      padding: 25px 15px;
-      color: #536174;
-      font-size: 14px;
+      padding: 24px 12px;
+      color: #64748b;
     }
 
     footer a {
-      color: #087e8b;
+      color: #2563eb;
     }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 14px;
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 24px;
       }
 
-      .card {
-        padding: 19px;
+      .calculator, .content {
+        padding: 18px;
       }
     }
   </style>
@@ -191,193 +154,191 @@
 <body>
 
   <header>
-    <div class="header-inner">
-      <a href="../">CalcMaster</a>
-      <div>Free Online Calculators</div>
-    </div>
+    <h1>CalcMaster</h1>
+    <p>Free Online Calculators for Everyday Use</p>
   </header>
 
-  <main class="container">
+  <nav>
+    <a href="../">Home</a>
+  </nav>
 
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="../">Home</a> / Percentage Calculator
-    </nav>
+  <main>
+    <section class="calculator">
+      <h2>Percentage Calculator</h2>
+      <p>Calculate percentages quickly and easily. Choose a calculation type below.</p>
 
-    <h1>Percentage Calculator</h1>
+      <label for="mode">What do you want to calculate?</label>
+      <select id="mode" onchange="updateLabels()">
+        <option value="of">What is X% of Y?</option>
+        <option value="is">X is what percent of Y?</option>
+        <option value="change">Percentage increase or decrease</option>
+      </select>
 
-    <p class="intro">
-      Calculate percentages quickly and easily with this free online
-      percentage calculator. Find a percentage of any number in seconds.
-    </p>
+      <label id="labelA" for="a">Percentage (%)</label>
+      <input id="a" type="number" step="any" placeholder="Enter percentage">
 
-    <section class="card">
-      <h2>What is X% of Y?</h2>
+      <label id="labelB" for="b">Number</label>
+      <input id="b" type="number" step="any" placeholder="Enter number">
 
-      <p class="muted">
-        Enter a percentage and a number to calculate your answer.
-      </p>
+      <div id="thirdField" hidden>
+        <label for="c">New value</label>
+        <input id="c" type="number" step="any" placeholder="Enter new value">
+      </div>
 
-      <form id="calculatorForm">
-        <label for="percent">Percentage (%)</label>
-        <input
-          id="percent"
-          type="number"
-          step="any"
-          placeholder="Example: 15"
-          required
-        >
+      <button onclick="calculate()">Calculate</button>
 
-        <label for="number">Number</label>
-        <input
-          id="number"
-          type="number"
-          step="any"
-          placeholder="Example: 200"
-          required
-        >
-
-        <button type="submit">Calculate Percentage</button>
-        <button type="button" class="secondary-button" id="resetButton">
-          Clear
-        </button>
-      </form>
-
-      <div id="result" role="status" aria-live="polite">
-        Your answer will appear here.
+      <div id="result" class="result" aria-live="polite">
+        Your result will appear here.
       </div>
     </section>
 
-    <section class="card">
-      <h2>Percentage Formula</h2>
+    <section class="content">
+      <h2>How to Calculate a Percentage</h2>
+      <p>A percentage represents a number as a fraction of 100. The word percent means “per hundred”.</p>
 
-      <p>Use this formula to calculate a percentage of a number:</p>
+      <h3>1. Find X% of a number</h3>
+      <p class="formula">Result = (Percentage ÷ 100) × Number</p>
+      <p>Example: 20% of 250 = (20 ÷ 100) × 250 = 50.</p>
 
-      <div class="formula">
-        Result = (Percentage ÷ 100) × Number
-      </div>
+      <h3>2. Find what percentage one number is of another</h3>
+      <p class="formula">Percentage = (Part ÷ Total) × 100</p>
+      <p>Example: 25 is 25% of 100.</p>
 
-      <h3>Example: What is 15% of 200?</h3>
-
-      <p>
-        Step 1: Divide 15 by 100 = 0.15
-      </p>
-
-      <p>
-        Step 2: Multiply 0.15 by 200 = 30
-      </p>
-
-      <p>
-        Therefore, <strong>15% of 200 is 30.</strong>
-      </p>
+      <h3>3. Calculate percentage increase or decrease</h3>
+      <p class="formula">Percentage change = ((New value − Old value) ÷ Old value) × 100</p>
+      <p>A positive result means an increase. A negative result means a decrease.</p>
     </section>
 
-    <section class="card">
-      <h2>How to Use This Calculator</h2>
-
-      <ol>
-        <li>Enter the percentage you want to calculate.</li>
-        <li>Enter the total number.</li>
-        <li>Click the Calculate Percentage button.</li>
-        <li>Your result will appear below the calculator.</li>
-      </ol>
-
-      <p class="muted">
-        You can enter whole numbers, decimals, and negative values.
-      </p>
-    </section>
-
-    <section class="card faq">
+    <section class="content">
       <h2>Frequently Asked Questions</h2>
 
-      <h3>1. How do I calculate 10% of a number?</h3>
-      <p>
-        Multiply the number by 10 and divide by 100.
-        For example, 10% of 500 is 50.
-      </p>
+      <h3>Is this percentage calculator free?</h3>
+      <p>Yes. CalcMaster's percentage calculator is free to use online.</p>
 
-      <h3>2. What is 20% of 100?</h3>
-      <p>
-        20% of 100 is 20.
-      </p>
+      <h3>How do I calculate 10% of a number?</h3>
+      <p>Multiply the number by 10 and divide the result by 100. For example, 10% of 500 is 50.</p>
 
-      <h3>3. Is this percentage calculator free?</h3>
-      <p>
-        Yes, CalcMaster's percentage calculator is free to use online.
-      </p>
+      <h3>How do I calculate percentage increase?</h3>
+      <p>Subtract the old value from the new value, divide by the old value, and multiply by 100.</p>
 
-      <h3>4. Can I calculate decimal percentages?</h3>
-      <p>
-        Yes. You can enter decimal percentages such as 2.5%, 12.75%,
-        or any other valid numeric value.
-      </p>
+      <h3>Can I calculate a percentage decrease?</h3>
+      <p>Yes. Select “Percentage increase or decrease” and enter the old and new values.</p>
     </section>
-
-    <p>
-      <a class="back-link" href="../">
-        ← Back to all CalcMaster calculators
-      </a>
-    </p>
-
   </main>
 
   <footer>
-    © <span id="year"></span> CalcMaster.
-    Free online calculator.
+    <p>© <span id="year"></span> CalcMaster. All rights reserved.</p>
+    <p><a href="../">Visit CalcMaster Home</a></p>
   </footer>
 
   <script>
-    const form = document.getElementById("calculatorForm");
-    const percentInput = document.getElementById("percent");
-    const numberInput = document.getElementById("number");
+    const mode = document.getElementById("mode");
+    const a = document.getElementById("a");
+    const b = document.getElementById("b");
+    const c = document.getElementById("c");
     const result = document.getElementById("result");
-    const resetButton = document.getElementById("resetButton");
+    const thirdField = document.getElementById("thirdField");
+
+    function updateLabels() {
+      const selected = mode.value;
+
+      thirdField.hidden = selected !== "change";
+      c.required = selected === "change";
+
+      if (selected === "of") {
+        document.getElementById("labelA").textContent = "Percentage (%)";
+        document.getElementById("labelB").textContent = "Number";
+        a.placeholder = "Enter percentage";
+        b.placeholder = "Enter number";
+      } else if (selected === "is") {
+        document.getElementById("labelA").textContent = "Part (X)";
+        document.getElementById("labelB").textContent = "Total (Y)";
+        a.placeholder = "Enter part";
+        b.placeholder = "Enter total";
+      } else {
+        document.getElementById("labelA").textContent = "Old value";
+        document.getElementById("labelB").textContent = "New value";
+        a.placeholder = "Enter old value";
+        b.placeholder = "Enter new value";
+      }
+
+      result.textContent = "Your result will appear here.";
+    }
 
     function formatNumber(value) {
-      return Number(value.toPrecision(12)).toLocaleString("en-US", {
-        maximumFractionDigits: 10
+      return Number(value.toFixed(8)).toLocaleString("en-US", {
+        maximumFractionDigits: 8
       });
     }
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
+    function calculate() {
+      const x = Number(a.value);
+      const y = Number(b.value);
 
-      const percentText = percentInput.value.trim();
-      const numberText = numberInput.value.trim();
-
-      if (percentText === "" || numberText === "") {
-        result.textContent = "Please enter both values.";
+      if (a.value.trim() === "" || b.value.trim() === "") {
+        result.innerHTML = '<span class="error">Please enter all required values.</span>';
         return;
       }
 
-      const percent = Number(percentText);
-      const number = Number(numberText);
-
-      if (!Number.isFinite(percent) || !Number.isFinite(number)) {
-        result.textContent = "Please enter valid numbers.";
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        result.innerHTML = '<span class="error">Please enter valid numbers.</span>';
         return;
       }
 
-      const answer = (percent / 100) * number;
+      let answer;
 
-      if (!Number.isFinite(answer)) {
-        result.textContent = "The result is too large to calculate.";
-        return;
+      if (mode.value === "of") {
+        answer = (x / 100) * y;
+
+        result.textContent =
+          formatNumber(x) + "% of " + formatNumber(y) +
+          " = " + formatNumber(answer);
+
+      } else if (mode.value === "is") {
+        if (y === 0) {
+          result.innerHTML = '<span class="error">Total cannot be zero.</span>';
+          return;
+        }
+
+        answer = (x / y) * 100;
+
+        result.textContent =
+          formatNumber(x) + " is " + formatNumber(answer) +
+          "% of " + formatNumber(y);
+
+      } else {
+        if (a.value.trim() === "" || c.value.trim() === "") {
+          result.innerHTML = '<span class="error">Enter both old and new values.</span>';
+          return;
+        }
+
+        const oldValue = Number(a.value);
+        const newValue = Number(c.value);
+
+        if (!Number.isFinite(newValue) || oldValue === 0) {
+          result.innerHTML =
+            '<span class="error">Old value must be a valid non-zero number.</span>';
+          return;
+        }
+
+        answer = ((newValue - oldValue) / Math.abs(oldValue)) * 100;
+
+        const direction = answer > 0
+          ? "increase"
+          : answer < 0
+          ? "decrease"
+          : "no change";
+
+        result.textContent =
+          "Percentage change: " + formatNumber(Math.abs(answer)) +
+          "% (" + direction + ")";
       }
-
-      result.textContent =
-        formatNumber(percent) + "% of " +
-        formatNumber(number) + " = " +
-        formatNumber(answer);
-    });
-
-    resetButton.addEventListener("click", function () {
-      form.reset();
-      result.textContent = "Your answer will appear here.";
-      percentInput.focus();
-    });
+    }
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
+    updateLabels();
   </script>
 
 </body>
