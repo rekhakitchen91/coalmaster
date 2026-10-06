@@ -1,1 +1,324 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GST Calculator Online – Add or Remove GST | CalcMaster</title>
+  <meta name="description" content="Use CalcMaster's free GST calculator to calculate GST amounts, add or remove GST, and find CGST, SGST, IGST and the final price instantly.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://rekhakitchen91.github.io/coalmaster/gst-calculator/">
+  <meta name="theme-color" content="#2563eb">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #2563eb;
+      color: white;
+      text-align: center;
+      padding: 22px 15px;
+    }
+
+    header h1 { margin: 0; font-size: 28px; }
+    header p { margin: 6px 0 0; }
+
+    nav {
+      background: white;
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    a { color: #2563eb; }
+
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      width: min(900px, 92%);
+      margin: 25px auto;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 18px #0000000d;
+    }
+
+    h2 { color: #1d4ed8; margin-top: 0; }
+
+    label {
+      display: block;
+      margin: 15px 0 6px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: 0;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #1d4ed8; }
+
+    .result {
+      margin-top: 20px;
+      padding: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .result p {
+      margin: 7px 0;
+    }
+
+    .total {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1d4ed8;
+    }
+
+    .error { color: #b91c1c; }
+
+    .formula {
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 12px;
+      color: #64748b;
+    }
+
+    @media (max-width: 500px) {
+      header h1 { font-size: 24px; }
+      .card { padding: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>CalcMaster GST Calculator</h1>
+    <p>Calculate GST online quickly and easily</p>
+  </header>
+
+  <nav>
+    <a href="../">Home</a>
+    <span> | </span>
+    <a href="../percentage-calculator/">Percentage Calculator</a>
+  </nav>
+
+  <main>
+    <section class="card">
+      <h2>Free GST Calculator</h2>
+      <p>Calculate GST, final price, and tax breakdown using the GST rate applicable to your transaction.</p>
+
+      <label for="mode">Calculation type</label>
+      <select id="mode">
+        <option value="add">Add GST to the original price</option>
+        <option value="remove">Remove GST from an inclusive price</option>
+      </select>
+
+      <label for="amount" id="amountLabel">Original amount before GST (₹)</label>
+      <input id="amount" type="number" min="0" step="any" placeholder="Enter amount">
+
+      <label for="rate">GST rate</label>
+      <select id="rate">
+        <option value="0">0%</option>
+        <option value="0.25">0.25%</option>
+        <option value="3">3%</option>
+        <option value="5">5%</option>
+        <option value="12">12%</option>
+        <option value="18" selected>18%</option>
+        <option value="28">28%</option>
+        <option value="custom">Custom rate</option>
+      </select>
+
+      <div id="customWrap" hidden>
+        <label for="customRate">Custom GST rate (%)</label>
+        <input id="customRate" type="number" min="0" max="100" step="any" placeholder="Enter GST rate">
+      </div>
+
+      <label for="taxType">Tax breakdown</label>
+      <select id="taxType">
+        <option value="intra">Intra-state: CGST + SGST</option>
+        <option value="inter">Inter-state: IGST</option>
+      </select>
+
+      <button type="button" id="calculateBtn">Calculate GST</button>
+
+      <div class="result" id="result" aria-live="polite">
+        Your GST calculation will appear here.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How to Calculate GST</h2>
+
+      <h3>Adding GST</h3>
+      <p class="formula">GST Amount = Original Price × GST Rate ÷ 100</p>
+      <p class="formula">Final Price = Original Price + GST Amount</p>
+
+      <h3>Removing GST from an inclusive price</h3>
+      <p class="formula">Original Price = Inclusive Price × 100 ÷ (100 + GST Rate)</p>
+      <p class="formula">GST Amount = Inclusive Price − Original Price</p>
+
+      <h3>CGST, SGST and IGST</h3>
+      <p>For an eligible intra-state transaction, GST is generally split equally between CGST and SGST. For an inter-state transaction, IGST generally applies. The correct treatment depends on the transaction and applicable tax rules.</p>
+    </section>
+
+    <section class="card">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>Is this GST calculator free?</h3>
+      <p>Yes. CalcMaster's GST calculator is free to use online.</p>
+
+      <h3>How do I calculate 18% GST on ₹1,000?</h3>
+      <p>18% of ₹1,000 is ₹180. The total price after adding GST is ₹1,180.</p>
+
+      <h3>How do I remove GST from a price?</h3>
+      <p>Select “Remove GST from an inclusive price”, enter the total price and choose the applicable GST rate.</p>
+
+      <h3>What is the difference between CGST, SGST and IGST?</h3>
+      <p>CGST and SGST generally apply together to intra-state supplies, while IGST generally applies to inter-state supplies, subject to applicable rules.</p>
+
+      <p><strong>Note:</strong> This tool provides estimates for the rate you select. Confirm the applicable GST rate and tax treatment for your specific transaction.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> CalcMaster</p>
+    <p><a href="../">CalcMaster Home</a></p>
+  </footer>
+
+  <script>
+    const mode = document.getElementById("mode");
+    const amount = document.getElementById("amount");
+    const rate = document.getElementById("rate");
+    const customRate = document.getElementById("customRate");
+    const customWrap = document.getElementById("customWrap");
+    const taxType = document.getElementById("taxType");
+    const result = document.getElementById("result");
+
+    function money(value) {
+      return value.toLocaleString("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    rate.addEventListener("change", () => {
+      customWrap.hidden = rate.value !== "custom";
+    });
+
+    mode.addEventListener("change", () => {
+      document.getElementById("amountLabel").textContent =
+        mode.value === "add"
+          ? "Original amount before GST (₹)"
+          : "Price including GST (₹)";
+      result.textContent = "Enter the values and click Calculate GST.";
+    });
+
+    document.getElementById("calculateBtn").addEventListener("click", () => {
+      const rawAmount = amount.value.trim();
+
+      if (rawAmount === "" || !Number.isFinite(Number(rawAmount)) ||
+          Number(rawAmount) < 0) {
+        result.innerHTML = '<p class="error">Please enter a valid non-negative amount.</p>';
+        return;
+      }
+
+      let gstRate;
+
+      if (rate.value === "custom") {
+        if (customRate.value.trim() === "") {
+          result.innerHTML = '<p class="error">Please enter a custom GST rate.</p>';
+          return;
+        }
+        gstRate = Number(customRate.value);
+      } else {
+        gstRate = Number(rate.value);
+      }
+
+      if (!Number.isFinite(gstRate) || gstRate < 0 || gstRate > 100) {
+        result.innerHTML = '<p class="error">GST rate must be between 0% and 100%.</p>';
+        return;
+      }
+
+      const entered = Number(rawAmount);
+      let base, gst, total;
+
+      if (mode.value === "add") {
+        base = entered;
+        gst = base * gstRate / 100;
+        total = base + gst;
+      } else {
+        total = entered;
+        base = total * 100 / (100 + gstRate);
+        gst = total - base;
+      }
+
+      let breakdown;
+
+      if (taxType.value === "intra") {
+        breakdown =
+          "<p>CGST (" + money(gstRate / 2) + "%): ₹" +
+          money(gst / 2) + "</p>" +
+          "<p>SGST (" + money(gstRate / 2) + "%): ₹" +
+          money(gst / 2) + "</p>";
+      } else {
+        breakdown =
+          "<p>IGST (" + money(gstRate) + "%): ₹" +
+          money(gst) + "</p>";
+      }
+
+      result.innerHTML =
+        "<p>Original amount before GST: ₹" + money(base) + "</p>" +
+        "<p>GST rate: " + money(gstRate) + "%</p>" +
+        "<p>Total GST amount: ₹" + money(gst) + "</p>" +
+        breakdown +
+        "<p class='total'>Final amount: ₹" + money(total) + "</p>";
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
+
